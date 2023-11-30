@@ -1,20 +1,27 @@
-import { createBrowserRouter } from "react-router-dom";
-import Home from "./pages/Home";
-import Detail from "./pages/Detail";
+import { createBrowserRouter } from 'react-router-dom';
+import Home from './pages/Home';
+import Detail from './pages/Detail';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     // element: null, // layout geral
     children: [
       {
-        path: "",
+        path: '',
         element: <Home />, // pagina da tabela
       },
       {
-        path: "digimon/:id",
+        path: 'digimon/:name',
         element: <Detail />, // pagina de detalhe
       },
     ],
   },
 ]);
+
+export const routes = {
+  digimon: {
+    list: '/',
+    detail: (name: string) => `/digimon/${name}`,
+  },
+};
