@@ -4,7 +4,7 @@ import Detail from './pages/Detail';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/digimon-table',
     // element: null, // layout geral
     children: [
       {
@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
 
 export const routes = {
   digimon: {
-    list: '/',
-    detail: (name: string) => `/digimon/${name}`,
+    list: '/digimon-table',
+    detail: (name: string) => `/digimon-table/digimon/${name}`,
   },
 };
