@@ -48,7 +48,11 @@ const Home = () => {
         }}
       >
         <Typography variant="h2" component="h1" mt={3}>
-          Digimon List Table
+          The Digimon List
+        </Typography>
+        <Typography variant="subtitle1" mt={1}>
+          A React.js + TypeScript project using MUI components and consuming an
+          API.
         </Typography>
       </Box>
       <DataGrid
