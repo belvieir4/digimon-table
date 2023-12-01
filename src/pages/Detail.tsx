@@ -90,7 +90,7 @@ const Detail = () => {
           variant="text"
           color="secondary"
           size="large"
-          fullWidth="true"
+          fullWidth
           onClick={() => navigate(routes.digimon.list)}
           sx={{ marginTop: theme.spacing(3) }}
         >
