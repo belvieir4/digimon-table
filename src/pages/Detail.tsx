@@ -12,10 +12,10 @@ import { useNavigate } from 'react-router-dom';
 import { routes } from 'router';
 
 const Detail = () => {
-  const { name } = useParams<{ name: string }>();
+  const { id } = useParams<{ id: string }>();
   const { data, isLoading, error } = useQuery({
-    queryKey: ['digimon', name],
-    queryFn: () => endpoints.getByName(name!),
+    queryKey: ['digimon', id],
+    queryFn: () => endpoints.getByName(id!),
   });
   const navigate = useNavigate();
   if (error) {
@@ -41,7 +41,7 @@ const Detail = () => {
         }}
       >
         <Typography variant="h2" component="h1" mt={3}>
-          Digimon Detail
+          Digimon Detail - #{data.id}
         </Typography>
       </Box>
       <Box
@@ -56,13 +56,17 @@ const Detail = () => {
           flex: 1,
         }}
       >
-        <Stack direction="row" sx={{ flex: 1 }}>
-          <img
-            src={data.img}
-            alt={data.name}
-            style={{ objectFit: 'contain', width: '100%' }}
-          />
-        </Stack>
+        {data.images[0] && (
+          <>
+            <Stack direction="row" sx={{ flex: 1 }}>
+              <img
+                src={data.images[0].href}
+                alt={data.name}
+                style={{ objectFit: 'contain', width: '100%' }}
+              />
+            </Stack>
+          </>
+        )}
         <Grid
           container
           spacing={4}
@@ -78,12 +82,52 @@ const Detail = () => {
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="caption" color="text.secondary" gutterBottom>
-              Level
-            </Typography>
-            <Typography variant="h4" component="div">
-              {data.level}
-            </Typography>
+            {data.levels[0] && (
+              <>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  Level
+                </Typography>
+                <Typography variant="h4" component="div">
+                  {data.levels[0].level}
+                </Typography>
+              </>
+            )}
+          </Grid>
+          <Grid item xs={6}>
+            {data.attributes[0] && (
+              <>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  Type
+                </Typography>
+                <Typography variant="h4" component="h2">
+                  {data.types[0].type}
+                </Typography>
+              </>
+            )}
+          </Grid>
+          <Grid item xs={6}>
+            {data.attributes[0] && (
+              <>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  Attribute
+                </Typography>
+                <Typography variant="h4" component="div">
+                  {data.attributes[0].attribute}
+                </Typography>
+              </>
+            )}
           </Grid>
         </Grid>
         <Button
@@ -100,8 +144,13 @@ const Detail = () => {
       <Box sx={{ textAlign: 'center', margin: theme.spacing(3) }}>
         <Typography variant="caption">
           This project uses the{' '}
-          <Link href="https://digimon-api.vercel.app" variant="inherit">
-            Digimon API from Shadow Smith
+          <Link
+            href="https://digimon-api.com"
+            variant="inherit"
+            rel="noopener"
+            target="_blank"
+          >
+            DAPI - Digimon API
           </Link>
         </Typography>
       </Box>

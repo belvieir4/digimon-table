@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'https://digimon-api.vercel.app/api/',
+  baseURL: 'https://digi-api.com/api/v1/',
 });

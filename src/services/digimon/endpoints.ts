@@ -1,13 +1,15 @@
 import { instance } from './instance';
-import { Digimon } from './types';
+import { Digimon, GetAllResponse, GetAllArgs } from './types';
 
 export const endpoints = {
-  getAll: async () => {
-    const response = await instance.get<Digimon[]>('/digimon');
+  getAll: async (args?: GetAllArgs) => {
+    const response = await instance.get<GetAllResponse>('/digimon', {
+      params: args,
+    });
     return response.data;
   },
-  getByName: async (name: string) => {
-    const response = await instance.get<Digimon[]>(`/digimon/name/${name}`);
-    return response.data[0];
+  getByName: async (id: string) => {
+    const response = await instance.get<Digimon>(`/digimon/${id}`);
+    return response.data;
   },
 };

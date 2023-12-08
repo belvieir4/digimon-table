@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
         element: <Home />, // pagina da tabela
       },
       {
-        path: 'digimon/:name',
+        path: 'digimon/:id',
         element: <Detail />, // pagina de detalhe
       },
     ],
@@ -22,6 +22,6 @@ export const router = createBrowserRouter([
 export const routes = {
   digimon: {
     list: '/digimon-table',
-    detail: (name: string) => `/digimon-table/digimon/${name}`,
+    detail: (id: string) => `/digimon-table/digimon/${id}`,
   },
 };
